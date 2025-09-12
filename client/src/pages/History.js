@@ -1,0 +1,2 @@
+
+import React,{useEffect,useState} from 'react'; import axios from 'axios'; export default function History(){ const [h,setH]=useState([]); useEffect(()=>{ axios.get((process.env.REACT_APP_API_URL||'http://localhost:5000')+'/api/attempts/user/guest').then(r=>setH(r.data)).catch(()=>{}); },[]); return (<div><h2>History</h2><ul>{h.map(x=><li key={x._id}>Score: {x.score} | {new Date(x.date).toLocaleString()}</li>)}</ul></div>); }
